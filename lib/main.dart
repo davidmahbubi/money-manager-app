@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/bottom_navbar.dart';
+import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/data/menu_list.dart';
+import 'package:money_manager_app/pages/transcation.dart';
 
 void main(List<String> args) => runApp(const MoneyManagerApp());
 
@@ -9,8 +11,9 @@ class MoneyManagerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainPage(),
+    return MaterialApp(
+      theme: colorSwatch,
+      home: const MainPage(),
     );
   }
 }
@@ -29,7 +32,12 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      l
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Theme.of(context).primaryColor,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
+      body: menuList[currentMenuIndex]['page'],
       bottomNavigationBar: BottomNavbar(
         currentMenuIndex: currentMenuIndex,
         listMenus: menuList,

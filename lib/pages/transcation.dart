@@ -9,6 +9,7 @@ class Transaction extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Transaction'),
       ),
+      body: const Text('Transaction page'),
     );
   }
 }
