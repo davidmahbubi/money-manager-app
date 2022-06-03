@@ -17,3 +17,5 @@ ThemeData colorSwatch = ThemeData(
     },
   ),
 );
+
+double primaryHorizontalMargin = 10;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:money_manager_app/pages/account.dart';
 import 'package:money_manager_app/pages/chart.dart';
-import 'package:money_manager_app/pages/transcation.dart';
+import 'package:money_manager_app/pages/transaction.dart';
 import 'package:money_manager_app/pages/user.dart';
 
 List<Map<String, dynamic>> menuList = [
