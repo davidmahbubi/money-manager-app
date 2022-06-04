@@ -43,12 +43,12 @@ class HomeTransaction extends StatelessWidget {
                 ),
               ],
             ),
-            const Flexible(
+            Flexible(
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  '+Rp.14,000',
-                  style: TextStyle(fontSize: 19, color: primaryGreen),
+                  accumulation,
+                  style: const TextStyle(fontSize: 19, color: primaryGreen),
                 ),
               ),
             )
