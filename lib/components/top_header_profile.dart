@@ -21,20 +21,28 @@ class TopHeaderProfile extends StatelessWidget {
           child: Image.asset(imagePath, width: 80, height: 80),
         ),
         const SizedBox(width: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Hello $name',
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            ),
-            const Text(
-              'Welcome Back',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            )
-          ],
+        Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Hello $name',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const Text(
+                'Welcome Back',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )
+            ],
+          ),
         ),
         Flexible(
+          flex: 1,
           child: Align(
             alignment: Alignment.centerRight,
             child: Container(

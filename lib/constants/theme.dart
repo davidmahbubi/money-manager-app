@@ -20,3 +20,6 @@ ThemeData primaryTheme = ThemeData(
 );
 
 const double primaryHorizontalMargin = 20;
+const Color primaryGreen = Color(0xFFACD9B2);
+const Color primaryOrange = Color(0xFFFFCA66);
+const Color primaryGrey = Color.fromARGB(255, 171, 174, 182);
