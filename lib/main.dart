@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/bottom_navbar.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/data/menu_list.dart';
-import 'package:money_manager_app/pages/transaction.dart';
 
 void main(List<String> args) => runApp(const MoneyManagerApp());
 
@@ -12,7 +11,7 @@ class MoneyManagerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: colorSwatch,
+      theme: primaryTheme,
       home: const MainPage(),
     );
   }

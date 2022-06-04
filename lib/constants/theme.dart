@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-ThemeData colorSwatch = ThemeData(
+ThemeData primaryTheme = ThemeData(
+  fontFamily: 'Poppins',
   primarySwatch: const MaterialColor(
     0xffff6780,
     <int, Color>{
@@ -18,4 +19,4 @@ ThemeData colorSwatch = ThemeData(
   ),
 );
 
-double primaryHorizontalMargin = 10;
+const double primaryHorizontalMargin = 20;
