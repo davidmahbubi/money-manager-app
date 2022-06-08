@@ -102,9 +102,9 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     width: size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () async {
@@ -115,11 +115,12 @@ class _SignInState extends State<SignIn> {
                           ),
                         );
                       },
-                      child: Text("Login", style: TextStyle(fontSize: 23)),
                       style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          minimumSize: Size(200, 50),
-                          primary: Color.fromARGB(255, 240, 96, 127)),
+                        shape: const StadiumBorder(),
+                        minimumSize: const Size(200, 50),
+                        primary: const Color.fromARGB(255, 240, 96, 127),
+                      ),
+                      child: const Text("Login"),
                     ),
                   ),
                 ),
