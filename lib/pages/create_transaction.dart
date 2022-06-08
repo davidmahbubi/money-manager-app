@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:intl/intl.dart';
 
 class CreateTransaction extends StatefulWidget {
   const CreateTransaction({Key? key}) : super(key: key);
@@ -9,6 +10,33 @@ class CreateTransaction extends StatefulWidget {
 }
 
 class _CreateTransactionState extends State<CreateTransaction> {
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _timeController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2050),
+    );
+    setState(() {
+      _dateController.text =
+          pickedDate == null ? '' : DateFormat('dd-MM-yyyy').format(pickedDate);
+    });
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    setState(() {
+      _timeController.text =
+          pickedTime == null ? '' : pickedTime.format(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +56,14 @@ class _CreateTransactionState extends State<CreateTransaction> {
                       margin: const EdgeInsets.only(right: 10),
                       child: OutlinedButton(
                         onPressed: () {},
-                        child: Text('Income'),
+                        child: const Text('Income'),
                       ),
                     ),
                   ),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text('Expense'),
+                      child: const Text('Expense'),
                     ),
                   ),
                   Expanded(
@@ -43,7 +71,7 @@ class _CreateTransactionState extends State<CreateTransaction> {
                       margin: const EdgeInsets.only(left: 10),
                       child: OutlinedButton(
                         onPressed: () {},
-                        child: Text('Transfer'),
+                        child: const Text('Transfer'),
                       ),
                     ),
                   ),
@@ -51,20 +79,28 @@ class _CreateTransactionState extends State<CreateTransaction> {
               ),
               const SizedBox(height: 20),
               Row(
-                children: const <Widget>[
+                children: <Widget>[
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: 5),
+                      padding: const EdgeInsets.only(right: 5),
                       child: TextField(
-                        decoration: InputDecoration(hintText: 'Date'),
+                        controller: _dateController,
+                        onTap: () {
+                          _selectDate(context);
+                        },
+                        decoration: const InputDecoration(hintText: 'Date'),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 5),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextField(
-                        decoration: InputDecoration(hintText: 'Time'),
+                        controller: _timeController,
+                        onTap: () {
+                          _selectTime(context);
+                        },
+                        decoration: const InputDecoration(hintText: 'Time'),
                       ),
                     ),
                   ),
@@ -114,7 +150,9 @@ class _CreateTransactionState extends State<CreateTransaction> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: 15,
