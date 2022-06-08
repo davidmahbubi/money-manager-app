@@ -28,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 20),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 alignment: Alignment.topLeft,
