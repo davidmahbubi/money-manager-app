@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/home_transaction.dart';
 import 'package:money_manager_app/components/top_header_profile.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:money_manager_app/models/transaction.dart' as transaction_model;
+import 'package:money_manager_app/models/transaction_list.dart';
 
 class Transaction extends StatelessWidget {
   const Transaction({Key? key}) : super(key: key);
@@ -40,16 +42,28 @@ class Transaction extends StatelessWidget {
                     ),
                     child: Column(
                       children: <Widget>[
-                        HomeTransaction(
-                          dateTime: DateTime.now(),
-                          accumulation: '+14,000',
-                        ),
-                        const SizedBox(height: 30),
-                        HomeTransaction(
-                          dateTime: DateTime.now(),
-                          accumulation: '+14,000',
-                        ),
-                        const SizedBox(height: 30),
+                        ...TransactionList.groupByDate()
+                            .entries
+                            .map(
+                              (
+                                MapEntry<DateTime,
+                                        List<transaction_model.Transaction>>
+                                    transactions,
+                              ) =>
+                                  Column(
+                                children: [
+                                  HomeTransaction(
+                                    dateTime: transactions.key,
+                                    accumulation: 'Rp.0',
+                                    transactionsList: transactions.value,
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  )
+                                ],
+                              ),
+                            )
+                            .toList(),
                       ],
                     ),
                   ),

@@ -4,15 +4,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/components/home_transaction_item.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:money_manager_app/models/standart_transaction.dart';
+import 'package:money_manager_app/models/transaction.dart';
 
 class HomeTransaction extends StatelessWidget {
   final DateTime dateTime;
   final String accumulation;
+  final List<Transaction> transactionsList;
 
   const HomeTransaction({
     super.key,
     required this.dateTime,
     required this.accumulation,
+    required this.transactionsList,
   });
 
   @override
@@ -54,30 +58,18 @@ class HomeTransaction extends StatelessWidget {
             )
           ],
         ),
-        const HomeTransactionItem(
-          icon: FaIcon(FontAwesomeIcons.utensils),
-          title: 'Dinner with crush',
-          category: 'Food & Drinks',
-          wallet: 'Cash',
-          amount: '-Rp.14,000',
-          transactionType: TransactionType.expense,
-        ),
-        const HomeTransactionItem(
-          icon: FaIcon(FontAwesomeIcons.coins),
-          title: 'Office\'s July Salary',
-          category: 'Salary',
-          wallet: 'Rekening BCA',
-          amount: '+5,000,000',
-          transactionType: TransactionType.income,
-        ),
-        const HomeTransactionItem(
-          icon: FaIcon(FontAwesomeIcons.utensils),
-          title: 'Dinner with crush',
-          category: 'Food & Drinks',
-          wallet: 'Cash',
-          amount: '-Rp.14,000',
-          transactionType: TransactionType.expense,
-        ),
+        ...transactionsList
+            .map((Transaction transaction) => HomeTransactionItem(
+                  icon: FaIcon(FontAwesomeIcons.utensils),
+                  title: transaction.name,
+                  category: (transaction as StandartTransaction)
+                      .transactionCategory
+                      .name,
+                  wallet: (transaction as StandartTransaction).account.name,
+                  amount: transaction.amount.toString(),
+                  transactionType: transaction.trType,
+                ))
+            .toList(),
       ],
     );
   }
