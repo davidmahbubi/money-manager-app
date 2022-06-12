@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:money_manager_app/main.dart';
-import 'package:money_manager_app/pages/auth/register.dart';
+import 'package:money_manager_app/pages/auth/signup.dart';
 
 class SignIn extends StatefulWidget {
   SignIn({
@@ -134,7 +134,7 @@ class _SignInState extends State<SignIn> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => RegisterPage(),
+                          builder: (BuildContext context) => SignUp(),
                         ),
                       );
                     },

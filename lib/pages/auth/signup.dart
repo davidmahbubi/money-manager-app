@@ -1,16 +1,16 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  RegisterPage({
+class SignUp extends StatefulWidget {
+  SignUp({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _SignUpState extends State<SignUp> {
   final email = TextEditingController();
 
   final password = TextEditingController();
