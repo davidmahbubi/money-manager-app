@@ -5,14 +5,20 @@ enum TransactionOrderType { ascending, descending }
 class TransactionList {
   static List<Transaction> transactionsList = [];
 
-  static Map<DateTime, List<Transaction>> groupByDate() {
-    Map<DateTime, List<Transaction>> groupedTransactions = {};
+  static Map<DateTime, Map<String, dynamic>> groupByDate() {
+    Map<DateTime, Map<String, dynamic>> groupedTransactions = {};
 
     for (Transaction transaction in transactionsList) {
       if (groupedTransactions[transaction.dateTime] == null) {
-        groupedTransactions[transaction.dateTime] = [transaction];
+        groupedTransactions[transaction.dateTime] = {
+          "transactions": [transaction],
+          "accumulation": transaction.amount
+        };
       } else {
-        groupedTransactions[transaction.dateTime]!.add(transaction);
+        groupedTransactions[transaction.dateTime]!['transactions']!
+            .add(transaction);
+        groupedTransactions[transaction.dateTime]!['accumulation'] +=
+            transaction.amount;
       }
     }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/components/home_transaction_item.dart';
-import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction.dart';
@@ -60,7 +59,11 @@ class HomeTransaction extends StatelessWidget {
         ),
         ...transactionsList
             .map((Transaction transaction) => HomeTransactionItem(
-                  icon: FaIcon(FontAwesomeIcons.utensils),
+                  icon: FaIcon(
+                    (transaction as StandartTransaction)
+                        .transactionCategory
+                        .icon,
+                  ),
                   title: transaction.name,
                   category: (transaction as StandartTransaction)
                       .transactionCategory
