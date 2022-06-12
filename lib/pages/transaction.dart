@@ -95,8 +95,7 @@ class Transaction extends StatelessWidget {
       Column(children: [
         HomeTransaction(
           dateTime: transactions.key,
-          accumulation:
-              (transactions.value['accumulation'] as double).toString(),
+          accumulation: transactions.value['accumulation'] as double,
           transactionsList: transactions.value['transactions'],
         ),
         const SizedBox(height: 15)

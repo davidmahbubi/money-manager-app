@@ -5,10 +5,11 @@ import 'package:money_manager_app/components/home_transaction_item.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction.dart';
+import 'package:money_manager_app/utils/helper.dart';
 
 class HomeTransaction extends StatelessWidget {
   final DateTime dateTime;
-  final String accumulation;
+  final double accumulation;
   final List<Transaction> transactionsList;
 
   const HomeTransaction({
@@ -50,7 +51,7 @@ class HomeTransaction extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  accumulation,
+                  formatNumber(accumulation),
                   style: const TextStyle(fontSize: 19, color: primaryGreen),
                 ),
               ),
@@ -69,7 +70,7 @@ class HomeTransaction extends StatelessWidget {
                       .transactionCategory
                       .name,
                   wallet: (transaction as StandartTransaction).account.name,
-                  amount: transaction.amount.toString(),
+                  amount: transaction.amount,
                   transactionType: transaction.trType,
                 ))
             .toList(),
