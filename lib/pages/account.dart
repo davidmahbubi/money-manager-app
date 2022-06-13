@@ -30,13 +30,13 @@ class Account extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          width: 300,
-                          height: 180,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Color.fromRGBO(183, 226, 196, 1),
-                                width: 1.0,
-                                style: BorderStyle.solid),
+                              color: Color.fromRGBO(183, 226, 196, 1),
+                              width: 1.0,
+                              style: BorderStyle.solid,
+                            ),
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             boxShadow: [
                               BoxShadow(
@@ -100,6 +100,7 @@ class Account extends StatelessWidget {
                                   textAlign: TextAlign.left,
                                 ),
                               ),
+                              SizedBox(height: 23),
                             ],
                           ),
                         ),
