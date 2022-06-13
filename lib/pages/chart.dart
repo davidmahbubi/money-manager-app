@@ -27,9 +27,6 @@ class Chart extends StatelessWidget {
               height: 5,
             ),
             MyPieChart(),
-            SizedBox(
-              height: 5,
-            ),
             MyBar()
           ],
         ),

@@ -17,20 +17,18 @@ class MyBar extends StatelessWidget {
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 111, 233, 255),
+                  color: Color.fromARGB(255, 55, 220, 253),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),
                 width: 300.0,
-                height: 45.0,
                 alignment: Alignment.topCenter,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 30.0,
-                      height: 30.0,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
@@ -41,10 +39,8 @@ class MyBar extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 250.0,
-                      height: 30.0,
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(7.0),
                         child: Text(
                           "You need to save 25K everyday",
                           textAlign: TextAlign.center,
@@ -60,6 +56,11 @@ class MyBar extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              height: 300,
+              width: 200,
+              color: Color.fromARGB(115, 165, 165, 165),
+            )
           ],
         ),
       ),
