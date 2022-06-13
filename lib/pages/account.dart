@@ -53,14 +53,18 @@ class Account extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 0, top: 20, bottom: 15),
-                                      child: Image.asset(
-                                        'assets/images/bank_mandiri.png',
-                                        height: 30,
-                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, top: 20, bottom: 15),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/bank_mandiri.png',
+                                          height: 30,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Expanded(
@@ -110,8 +114,7 @@ class Account extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          width: 300,
-                          height: 180,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Color.fromRGBO(255, 139, 158, 1),
@@ -133,16 +136,14 @@ class Account extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20, top: 20, bottom: 0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Image.asset(
-                                          'assets/images/bank_linkaja.png',
-                                          height: 40,
-                                        ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, top: 20, bottom: 0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Image.asset(
+                                        'assets/images/bank_linkaja.png',
+                                        height: 40,
                                       ),
                                     ),
                                   ),
@@ -171,8 +172,8 @@ class Account extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 15, left: 20),
+                                padding: const EdgeInsets.only(
+                                    top: 15, left: 20, bottom: 23),
                                 child: Text(
                                   "**** **** 5554",
                                   style: TextStyle(
@@ -194,8 +195,7 @@ class Account extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          width: 300,
-                          height: 180,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Color.fromRGBO(255, 202, 102, 1),
@@ -255,8 +255,8 @@ class Account extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 15, left: 20),
+                                padding: const EdgeInsets.only(
+                                    top: 15, left: 20, bottom: 23),
                                 child: Text(
                                   "**** **** **** 3228",
                                   style: TextStyle(
