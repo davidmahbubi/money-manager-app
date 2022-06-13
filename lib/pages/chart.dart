@@ -13,8 +13,8 @@ class Chart extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(20, 70, 20, 20),
-              child: Text(
+              padding: const EdgeInsets.fromLTRB(20, 70, 20, 20),
+              child: const Text(
                 "Expense Report",
                 style: TextStyle(
                   fontSize: 18,
@@ -22,14 +22,10 @@ class Chart extends StatelessWidget {
                 ),
               ),
             ),
-            MyCard(),
-            SizedBox(
-              height: 5,
-            ),
+            const MyCard(),
+            const SizedBox(height: 5),
             MyPieChart(),
-            SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
             MyBar()
           ],
         ),
