@@ -21,23 +21,29 @@ class MyCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Pemasukan Bulanan",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 8,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "Pemasukan Bulanan",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 8,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 1,
                   ),
-                  Text(
-                    "Rp. 24.000.000",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 11,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "Rp. 24.000.000",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
                     ),
                   ),
                 ],
@@ -56,23 +62,29 @@ class MyCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Pengeluaran Bulanan",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 8,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "Pengeluaran Bulanan",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 8,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 1,
                   ),
-                  Text(
-                    "Rp. 10.000.000",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 11,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      "Rp. 10.000.000",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 11,
+                      ),
                     ),
                   ),
                 ],

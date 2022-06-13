@@ -15,32 +15,6 @@ class MyBar extends StatelessWidget {
           shrinkWrap: true,
           children: [
             Center(
-              child: Stack(
-                children: <Widget>[
-                  Center(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 400.0,
-                          height: 25.0,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 224, 224, 224),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                          ),
-                          width: 330.0,
-                          height: 500.0,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Center(
               child: Container(
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 111, 233, 255),
