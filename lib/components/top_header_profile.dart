@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:money_manager_app/models/user.dart';
 
 class TopHeaderProfile extends StatelessWidget {
-  final String imagePath;
-  final String name;
+  final User user;
 
-  const TopHeaderProfile({
-    super.key,
-    required this.imagePath,
-    required this.name,
-  });
+  const TopHeaderProfile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +13,7 @@ class TopHeaderProfile extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
-          child: Image.asset(imagePath, width: 80, height: 80),
+          child: Image.asset(user.picture, width: 80, height: 80),
         ),
         const SizedBox(width: 20),
         Expanded(
@@ -27,7 +22,7 @@ class TopHeaderProfile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Hello $name',
+                'Hello ${user.name}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,

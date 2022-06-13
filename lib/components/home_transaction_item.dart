@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:money_manager_app/utils/helper.dart';
 
 class HomeTransactionItem extends StatelessWidget {
   final Widget icon;
   final String title;
   final String category;
   final String wallet;
-  final String amount;
+  final double amount;
   final TransactionType transactionType;
 
   const HomeTransactionItem({
@@ -68,7 +69,7 @@ class HomeTransactionItem extends StatelessWidget {
                     style: const TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    amount,
+                    formatNumber(amount),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,

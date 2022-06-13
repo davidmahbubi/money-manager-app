@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:intl/intl.dart';
+import 'package:money_manager_app/constants/enums.dart';
 
 class CreateTransaction extends StatefulWidget {
   const CreateTransaction({Key? key}) : super(key: key);
@@ -10,8 +11,10 @@ class CreateTransaction extends StatefulWidget {
 }
 
 class _CreateTransactionState extends State<CreateTransaction> {
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _timeController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
+
+  TransactionType transactionType = TransactionType.income;
 
   Future<void> _selectDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
@@ -37,6 +40,37 @@ class _CreateTransactionState extends State<CreateTransaction> {
     });
   }
 
+  Widget _renderTopTransactionCategoryButtons(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: OutlinedButton(
+              onPressed: () {},
+              child: const Text('Income'),
+            ),
+          ),
+        ),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Expense'),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(left: 10),
+            child: OutlinedButton(
+              onPressed: () {},
+              child: const Text('Transfer'),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,34 +83,7 @@ class _CreateTransactionState extends State<CreateTransaction> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text('Income'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Expense'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text('Transfer'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _renderTopTransactionCategoryButtons(context),
               const SizedBox(height: 20),
               Row(
                 children: <Widget>[
