@@ -78,33 +78,57 @@ class MyBar extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Container(height: 25),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, top: 25, bottom: 20),
-                              child: Container(
-                                height: 20,
-                                width: 10,
-                                color: Colors.amber,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                            ),
+                            child: Container(
+                              color: Colors.amber,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 5, top: 2, bottom: 2, right: 5),
+                                child: Text(
+                                  "10%",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 34, 34, 34),
+                                      fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                            ),
+                            child: Text(
+                              "Service Motor",
+                              style: TextStyle(
+                                color: Color.fromARGB(221, 19, 19, 19),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 50, right: 20, top: 25, bottom: 20),
+                                right: 20,
+                              ),
                               child: Text(
-                                "6/2022",
+                                "Rp.350.000",
                                 textAlign: TextAlign.end,
+                                style: TextStyle(fontSize: 15),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 23),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),
