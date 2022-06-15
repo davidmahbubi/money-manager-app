@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class MyLog extends StatelessWidget {
   const MyLog({Key? key}) : super(key: key);
@@ -20,19 +17,25 @@ class MyLog extends StatelessWidget {
               ),
               child: Container(
                 color: Colors.amber,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 5, top: 2, bottom: 2, right: 5),
+                child: const Padding(
+                  padding: EdgeInsets.only(
+                    left: 5,
+                    top: 2,
+                    bottom: 2,
+                    right: 5,
+                  ),
                   child: Text(
                     "10%",
                     style: TextStyle(
-                        color: Color.fromARGB(255, 34, 34, 34), fontSize: 10),
+                      color: Color.fromARGB(255, 34, 34, 34),
+                      fontSize: 10,
+                    ),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 10,
               ),
               child: Text(
@@ -44,9 +47,9 @@ class MyLog extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   right: 20,
                 ),
                 child: Text(

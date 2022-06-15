@@ -11,7 +11,7 @@ import 'package:money_manager_app/models/transaction_category.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
 import 'package:money_manager_app/models/account.dart';
 import 'package:money_manager_app/services/firebase_services.dart';
-import 'package:money_manager_app/pages/auth/wrapper.dart';
+import 'package:money_manager_app/pages/wrapper.dart';
 import 'package:money_manager_app/pages/create_transaction.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:firebase_core/firebase_core.dart';

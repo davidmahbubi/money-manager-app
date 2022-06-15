@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/account.dart';
-import 'package:money_manager_app/models/account_list.dart';
+import 'package:money_manager_app/data/account_list.dart';
 import 'package:money_manager_app/models/transaction_category.dart';
-import 'package:money_manager_app/models/transaction_category_list.dart';
+import 'package:money_manager_app/data/transaction_category_list.dart';
 
 class ExpenseIncomeForm extends StatefulWidget {
   Function(

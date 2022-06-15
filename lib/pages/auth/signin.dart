@@ -4,9 +4,7 @@ import 'package:money_manager_app/pages/auth/signup.dart';
 import 'package:money_manager_app/services/firebase_services.dart';
 
 class SignIn extends StatefulWidget {
-  SignIn({
-    Key? key,
-  }) : super(key: key);
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -14,12 +12,9 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final email = TextEditingController();
-
   final password = TextEditingController();
-
   bool _obsecure = true;
-
-  Icon _passIcon = Icon(Icons.lock);
+  Icon _passIcon = const Icon(Icons.lock);
 
   @override
   Widget build(BuildContext context) {
@@ -80,21 +75,21 @@ class _SignInState extends State<SignIn> {
                           color: Color.fromARGB(255, 240, 96, 127),
                         ),
                         suffixIcon: IconButton(
-                          color: Color.fromARGB(255, 240, 96, 127),
+                          color: const Color.fromARGB(255, 240, 96, 127),
                           onPressed: () {
                             setState(() {
                               if (_obsecure == true) {
                                 _obsecure = false;
-                                _passIcon = Icon(Icons.lock_open);
+                                _passIcon = const Icon(Icons.lock_open);
                               } else {
                                 _obsecure = true;
-                                _passIcon = Icon(Icons.lock);
+                                _passIcon = const Icon(Icons.lock);
                               }
                             });
                           },
                           icon: _passIcon,
                         ),
-                        label: Text(
+                        label: const Text(
                           "Password",
                           style: TextStyle(color: Colors.grey),
                         ),
@@ -122,10 +117,8 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(child: Text("Doesn’t have an account yet ?")),
+                const SizedBox(height: 20),
+                const Center(child: Text("Doesn’t have an account yet ?")),
                 Center(
                   child: TextButton(
                     onPressed: () async {
@@ -138,10 +131,11 @@ class _SignInState extends State<SignIn> {
                         setState(() {});
                       });
                     },
-                    child: Text(
+                    child: const Text(
                       "Sign Up",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 240, 96, 127)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 240, 96, 127),
+                      ),
                     ),
                   ),
                 ),

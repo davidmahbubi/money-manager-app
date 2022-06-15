@@ -29,7 +29,7 @@ class MyPieChart extends StatelessWidget {
           ),
         ),
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color.fromARGB(255, 55, 220, 253),
             borderRadius: BorderRadius.all(
               Radius.circular(10),
@@ -39,11 +39,11 @@ class MyPieChart extends StatelessWidget {
           alignment: Alignment.topCenter,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
+            children: const <Widget>[
+              SizedBox(
                 width: 30.0,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(
                     Icons.lightbulb_outline,
                     color: Color.fromARGB(255, 32, 32, 32),
@@ -51,26 +51,22 @@ class MyPieChart extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: Text(
-                    "You need to save 25K everyday",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Color.fromARGB(255, 34, 34, 34),
-                      fontWeight: FontWeight.w500,
-                    ),
+              Padding(
+                padding: EdgeInsets.all(7.0),
+                child: Text(
+                  "You need to save 25K everyday",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Color.fromARGB(255, 34, 34, 34),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
             ],
           ),
         ),
-        SizedBox(
-          height: 20,
-        )
+        const SizedBox(height: 20)
       ],
     );
   }

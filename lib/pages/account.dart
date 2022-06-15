@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+import 'package:money_manager_app/components/account_card.dart';
 
 class Account extends StatelessWidget {
   const Account({Key? key}) : super(key: key);
@@ -11,9 +11,9 @@ class Account extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(20, 70, 20, 20),
-              child: Text(
-                "Wallet",
+              padding: const EdgeInsets.fromLTRB(20, 70, 20, 20),
+              child: const Text(
+                "Wallets",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -27,252 +27,39 @@ class Account extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 30),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromRGBO(183, 226, 196, 1),
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              const BoxShadow(
-                                color: Color.fromRGBO(183, 226, 196, 1),
-                                spreadRadius: 2,
-                                offset: Offset(0.0, 4.0),
-                              ),
-                            ],
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20, top: 20, bottom: 15),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/bank_mandiri.png',
-                                          height: 30,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 20, top: 25, bottom: 20),
-                                      child: Text(
-                                        "6/2022",
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  "Rp.3.600.000",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 15, left: 20),
-                                child: Text(
-                                  "**** **** **** 3652",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                              SizedBox(height: 23),
-                            ],
-                          ),
-                        ),
-                      ],
+                    AccountCard(
+                      shadowColor: const Color.fromRGBO(183, 226, 196, 1),
+                      image: Image.asset(
+                        'assets/images/bank_mandiri.png',
+                        height: 30,
+                      ),
+                      expired: '06/2022',
+                      amount: 3600000,
+                      cardNumber: '**** **** **** 3652',
                     ),
-                    SizedBox(height: 20),
-                    Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 30),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color.fromRGBO(255, 139, 158, 1),
-                                width: 1.0,
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(255, 139, 158, 1),
-                                spreadRadius: 2,
-                                offset: Offset(0.0, 4.0),
-                              ),
-                            ],
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20, top: 20, bottom: 0),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Image.asset(
-                                        'assets/images/bank_linkaja.png',
-                                        height: 40,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 20, top: 25, bottom: 20),
-                                      child: Text(
-                                        "6/2022",
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  "Rp.2.500.000",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 15, left: 20, bottom: 23),
-                                child: Text(
-                                  "**** **** 5554",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: 20),
+                    AccountCard(
+                      shadowColor: const Color.fromRGBO(255, 139, 158, 1),
+                      image: Image.asset(
+                        'assets/images/bank_linkaja.png',
+                        height: 30,
+                      ),
+                      expired: '06/2022',
+                      amount: 3600000,
+                      cardNumber: '**** **** **** 5554',
                     ),
-                    SizedBox(
-                      height: 20,
+                    const SizedBox(height: 20),
+                    AccountCard(
+                      shadowColor: const Color.fromRGBO(255, 202, 102, 1),
+                      image: Image.asset(
+                        'assets/images/bank_dana.jpg',
+                        height: 30,
+                      ),
+                      expired: '06/2022',
+                      amount: 1700000,
+                      cardNumber: '**** **** **** 5554',
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 30),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color.fromRGBO(255, 202, 102, 1),
-                                width: 1.0,
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(255, 202, 102, 1),
-                                spreadRadius: 2,
-                                offset: Offset(0.0, 4.0),
-                              ),
-                            ],
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20, top: 20, bottom: 0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Image.asset(
-                                          'assets/images/bank_dana.jpg',
-                                          height: 40,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 20, top: 25, bottom: 20),
-                                      child: Text(
-                                        "6/2022",
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Text(
-                                  "Rp.1.700.000",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 15, left: 20, bottom: 23),
-                                child: Text(
-                                  "**** **** **** 3228",
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),

@@ -119,29 +119,31 @@ class _TransferFormState extends State<TransferForm> {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 15,
-                ),
-                child: Text('Save Transaction'),
-              )),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 15,
+              ),
+              child: Text('Save Transaction'),
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 15,
-                ),
-                child: Text('Back'),
-              )),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 15,
+              ),
+              child: Text('Back'),
+            ),
+          ),
         ),
       ],
     );

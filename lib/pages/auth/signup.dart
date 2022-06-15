@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:money_manager_app/services/firebase_services.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({
-    Key? key,
-  }) : super(key: key);
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();

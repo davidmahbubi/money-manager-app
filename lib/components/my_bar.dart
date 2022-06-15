@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:money_manager_app/components/my_log.dart';
 
 class MyBar extends StatelessWidget {
@@ -19,24 +17,26 @@ class MyBar extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       width: 3.0,
                       style: BorderStyle.solid,
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Color.fromARGB(255, 238, 238, 238),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    color: const Color.fromARGB(255, 238, 238, 238),
                   ),
                   child: Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(height: 15),
-                        Text("Detail Transaction",
-                            style: TextStyle(fontSize: 10)),
-                        Container(height: 15),
+                      children: const <Widget>[
+                        SizedBox(height: 15),
+                        Text(
+                          "Detail Transaction",
+                          style: TextStyle(fontSize: 10),
+                        ),
+                        SizedBox(height: 15),
                         MyLog(),
                         MyLog(),
                         MyLog(),
