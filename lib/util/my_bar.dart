@@ -25,7 +25,7 @@ class MyBar extends StatelessWidget {
                       Radius.circular(10),
                     ),
                   ),
-                  width: 280.0,
+                  width: 260.0,
                   alignment: Alignment.topCenter,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class MyBar extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Icon(
-                            Icons.favorite,
+                            Icons.lightbulb_outline,
                             color: Color.fromARGB(255, 32, 32, 32),
                             size: 24.0,
                           ),
@@ -48,9 +48,9 @@ class MyBar extends StatelessWidget {
                             "You need to save 25K everyday",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color.fromARGB(255, 34, 34, 34),
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -71,9 +71,12 @@ class MyBar extends StatelessWidget {
                   ),
                   child: Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(height: 25),
+                        Container(height: 15),
+                        Text("Detail Transaction",
+                            style: TextStyle(fontSize: 10)),
+                        Container(height: 15),
                         MyLog(),
                         MyLog(),
                         MyLog(),
