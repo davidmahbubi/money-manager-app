@@ -127,7 +127,10 @@ class _SignUpState extends State<SignUp> {
                 child: SizedBox(
                   width: size.width * 0.5,
                   child: ElevatedButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      await AuthServices.signUpEmailPassword(
+                          email.text, password.text);
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
                       minimumSize: Size(200, 50),

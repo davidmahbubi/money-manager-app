@@ -8,11 +8,16 @@ import 'package:money_manager_app/models/transaction.dart';
 import 'package:money_manager_app/models/transaction_category.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
 import 'package:money_manager_app/models/account.dart';
-import 'package:money_manager_app/pages/auth/signin.dart';
+import 'package:money_manager_app/pages/auth/wrapper.dart';
 import 'package:money_manager_app/pages/create_transaction.dart';
 import 'package:money_manager_app/constants/enums.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main(List<String> args) => runApp(const MoneyManagerApp());
+void main(List<String> args) {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(MoneyManagerApp());
+}
 
 class MoneyManagerApp extends StatelessWidget {
   const MoneyManagerApp({Key? key}) : super(key: key);
@@ -22,7 +27,7 @@ class MoneyManagerApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: primaryTheme,
-      home: SignIn(),
+      home: Wrapper(),
     );
   }
 }
