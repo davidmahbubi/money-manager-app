@@ -90,6 +90,12 @@ class _CreateTransactionState extends State<CreateTransaction> {
     );
   }
 
+  void setTransactionType(TransactionType transactionTypeA) {
+    setState(() {
+      transactionType = transactionTypeA;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
