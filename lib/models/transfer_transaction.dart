@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:money_manager_app/models/transaction.dart';
-import 'package:money_manager_app/pages/account.dart';
+import 'package:money_manager_app/models/account.dart';
 import 'package:money_manager_app/constants/enums.dart';
 
 class TransferTransaction extends Transaction {

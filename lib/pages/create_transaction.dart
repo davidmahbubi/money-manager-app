@@ -5,6 +5,7 @@ import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
+import 'package:money_manager_app/models/transfer_transaction.dart';
 
 class CreateTransaction extends StatefulWidget {
   const CreateTransaction({Key? key}) : super(key: key);
@@ -109,10 +110,30 @@ class _CreateTransactionState extends State<CreateTransaction> {
               _renderTopTransactionCategoryButtons(context),
               const SizedBox(height: 20),
               transactionType == TransactionType.transfer
-                  ? TransferForm()
+                  ? TransferForm(onSubmit: (sourceAccount, destinationAccount,
+                      amount, description, name, dateTime, transferFee) {
+                      TransactionList.addTransaction(
+                        TransferTransaction(
+                          dateTime: dateTime,
+                          sourceAccount: sourceAccount,
+                          destinationAccount: destinationAccount,
+                          amount: amount,
+                          name: name,
+                          note: description,
+                          transferFee: transferFee,
+                        ),
+                      );
+                    })
                   : ExpenseIncomeForm(
-                      onSubmit: (account, transactionCategory, amount,
-                          description, name, dateTime) {
+                      transactionType: transactionType,
+                      onSubmit: (
+                        account,
+                        transactionCategory,
+                        amount,
+                        description,
+                        name,
+                        dateTime,
+                      ) {
                         TransactionList.addTransaction(
                           StandartTransaction(
                             amount: amount,

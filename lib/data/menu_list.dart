@@ -15,7 +15,7 @@ List<Map<String, dynamic>> menuList = [
     'icon': const Icon(LineAwesomeIcons.pie_chart),
   },
   {
-    'page': const Account(),
+    'page': Account(),
     'icon': const Icon(LineAwesomeIcons.wallet),
   },
   {

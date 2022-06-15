@@ -42,7 +42,7 @@ class HomeTransactionItem extends StatelessWidget {
           children: <Widget>[
             icon,
             const SizedBox(width: 20),
-            Flexible(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -66,7 +66,8 @@ class HomeTransactionItem extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     wallet,
-                    style: const TextStyle(color: Colors.grey),
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.grey.shade700),
                   ),
                   Text(
                     formatNumber(amount),

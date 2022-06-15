@@ -7,6 +7,8 @@ import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction.dart';
 import 'package:money_manager_app/utils/helper.dart';
 
+import '../models/transfer_transaction.dart';
+
 class HomeTransaction extends StatelessWidget {
   final DateTime dateTime;
   final double accumulation;
@@ -61,15 +63,17 @@ class HomeTransaction extends StatelessWidget {
         ...transactionsList
             .map((Transaction transaction) => HomeTransactionItem(
                   icon: FaIcon(
-                    (transaction as StandartTransaction)
-                        .transactionCategory
-                        .icon,
+                    transaction is StandartTransaction
+                        ? transaction.transactionCategory.icon
+                        : FontAwesomeIcons.arrowRightArrowLeft,
                   ),
                   title: transaction.name,
-                  category: (transaction as StandartTransaction)
-                      .transactionCategory
-                      .name,
-                  wallet: (transaction as StandartTransaction).account.name,
+                  category: transaction is StandartTransaction
+                      ? transaction.transactionCategory.name
+                      : 'Transfer',
+                  wallet: transaction is StandartTransaction
+                      ? transaction.account.name
+                      : ('${(transaction as TransferTransaction).sourceAccount.name} \n ${transaction.destinationAccount.name}'),
                   amount: transaction.amount,
                   transactionType: transaction.trType,
                 ))

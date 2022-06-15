@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:money_manager_app/models/account.dart';
+import 'package:money_manager_app/data/account_list.dart';
 
 class TransferForm extends StatefulWidget {
+  final Function(
+    Account sourceAccount,
+    Account destinationAccount,
+    double amount,
+    String description,
+    String name,
+    DateTime dateTime,
+    double transferFee,
+  ) onSubmit;
+
+  const TransferForm({Key? key, required this.onSubmit}) : super(key: key);
+
   @override
   State<TransferForm> createState() => _TransferFormState();
 }
@@ -9,6 +23,13 @@ class TransferForm extends StatefulWidget {
 class _TransferFormState extends State<TransferForm> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
+  final TextEditingController _transferFeeController = TextEditingController();
+  DateTime? dt;
+  Account? sourceAccount;
+  Account? destinationAccount;
 
   Future<void> _selectTime(BuildContext context) async {
     TimeOfDay? pickedTime = await showTimePicker(
@@ -18,6 +39,7 @@ class _TransferFormState extends State<TransferForm> {
     setState(() {
       _timeController.text =
           pickedTime == null ? '' : pickedTime.format(context);
+      fillDt();
     });
   }
 
@@ -30,8 +52,16 @@ class _TransferFormState extends State<TransferForm> {
     );
     setState(() {
       _dateController.text =
-          pickedDate == null ? '' : DateFormat('dd-MM-yyyy').format(pickedDate);
+          pickedDate == null ? '' : DateFormat('yyyy-MM-dd').format(pickedDate);
+      fillDt();
     });
+  }
+
+  void fillDt() {
+    if (_dateController.text.isNotEmpty && _timeController.text.isNotEmpty) {
+      dt = DateFormat('yyyy-MM-d hh:mm a')
+          .parse('${_dateController.text} ${_timeController.text}');
+    }
   }
 
   @override
@@ -69,57 +99,66 @@ class _TransferFormState extends State<TransferForm> {
         const SizedBox(height: 5),
         DropdownButtonFormField(
           decoration: const InputDecoration(hintText: 'Source Account'),
-          items: const <DropdownMenuItem<Object>>[
-            DropdownMenuItem(
-              value: 'cash',
-              child: Text('Cash'),
-            ),
-            DropdownMenuItem(
-              value: 'rekening_bca',
-              child: Text('Rekening BCA'),
-            ),
-          ],
-          onChanged: (_) {},
+          items: AccountList.accountsList.map((Account account) {
+            return DropdownMenuItem<Account>(
+              value: account,
+              child: Text(account.name),
+            );
+          }).toList(),
+          onChanged: (account) {
+            sourceAccount = account as Account;
+          },
         ),
         const SizedBox(height: 5),
         DropdownButtonFormField(
           decoration: const InputDecoration(hintText: 'Destination Account'),
-          items: const <DropdownMenuItem<Object>>[
-            DropdownMenuItem(
-              value: 'cash',
-              child: Text('Cash'),
-            ),
-            DropdownMenuItem(
-              value: 'rekening_bca',
-              child: Text('Rekening BCA'),
-            ),
-          ],
-          onChanged: (_) {},
+          items: AccountList.accountsList.map((Account account) {
+            return DropdownMenuItem<Account>(
+              value: account,
+              child: Text(account.name),
+            );
+          }).toList(),
+          onChanged: (account) {
+            destinationAccount = account as Account;
+          },
         ),
         const SizedBox(height: 5),
-        const TextField(
-          decoration: InputDecoration(hintText: 'Name'),
+        const SizedBox(height: 5),
+        TextField(
+          controller: _nameController,
+          decoration: const InputDecoration(hintText: 'Name'),
         ),
         const SizedBox(height: 5),
-        const TextField(
-          decoration: InputDecoration(hintText: 'Amount'),
+        TextField(
+          controller: _amountController,
+          decoration: const InputDecoration(hintText: 'Amount'),
+          keyboardType: TextInputType.number,
+        ),
+        TextField(
+          controller: _transferFeeController,
+          decoration: const InputDecoration(hintText: 'Transfer Fee'),
           keyboardType: TextInputType.number,
         ),
         const SizedBox(height: 5),
-        const TextField(
-          decoration: InputDecoration(hintText: 'Transfer Fee'),
-          keyboardType: TextInputType.number,
-        ),
-        const SizedBox(height: 5),
-        const TextField(
+        TextField(
           maxLines: 4,
-          decoration: InputDecoration(hintText: 'Note'),
+          controller: _noteController,
+          decoration: const InputDecoration(hintText: 'Note'),
         ),
         const SizedBox(height: 35),
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
+              widget.onSubmit(
+                sourceAccount!,
+                destinationAccount!,
+                double.tryParse(_amountController.text) ?? 0,
+                _noteController.text,
+                _nameController.text,
+                dt!,
+                double.tryParse(_transferFeeController.text) ?? 0,
+              );
               Navigator.pop(context);
             },
             child: const Padding(
@@ -134,16 +173,15 @@ class _TransferFormState extends State<TransferForm> {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 15,
-              ),
-              child: Text('Back'),
-            ),
-          ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                ),
+                child: Text('Back'),
+              )),
         ),
       ],
     );

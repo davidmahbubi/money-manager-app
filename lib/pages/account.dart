@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/account_card.dart';
+import 'package:money_manager_app/data/account_list.dart';
 
+// ignore: must_be_immutable
 class Account extends StatelessWidget {
-  const Account({Key? key}) : super(key: key);
+  List<Color> colorsPalette = const <Color>[
+    Color.fromRGBO(183, 226, 196, 1),
+    Color.fromRGBO(255, 139, 158, 1),
+    Color.fromRGBO(255, 202, 102, 1)
+  ];
+
+  int _colorIndex = 0;
+
+  Account({Key? key}) : super(key: key);
+
+  int get colorIndex {
+    if (_colorIndex + 1 > colorsPalette.length) {
+      _colorIndex = 0;
+    }
+    return _colorIndex++;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,40 +43,23 @@ class Account extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    AccountCard(
-                      shadowColor: const Color.fromRGBO(183, 226, 196, 1),
-                      image: Image.asset(
-                        'assets/images/bank_mandiri.png',
-                        height: 30,
-                      ),
-                      expired: '06/2022',
-                      amount: 3600000,
-                      cardNumber: '**** **** **** 3652',
-                    ),
-                    const SizedBox(height: 20),
-                    AccountCard(
-                      shadowColor: const Color.fromRGBO(255, 139, 158, 1),
-                      image: Image.asset(
-                        'assets/images/bank_linkaja.png',
-                        height: 30,
-                      ),
-                      expired: '06/2022',
-                      amount: 3600000,
-                      cardNumber: '**** **** **** 5554',
-                    ),
-                    const SizedBox(height: 20),
-                    AccountCard(
-                      shadowColor: const Color.fromRGBO(255, 202, 102, 1),
-                      image: Image.asset(
-                        'assets/images/bank_dana.jpg',
-                        height: 30,
-                      ),
-                      expired: '06/2022',
-                      amount: 1700000,
-                      cardNumber: '**** **** **** 5554',
-                    ),
-                    const SizedBox(height: 20),
+                  children: [
+                    ...AccountList.accountsList
+                        .map(
+                          (acc) => Column(
+                            children: [
+                              AccountCard(
+                                shadowColor: colorsPalette[colorIndex],
+                                image: acc.image,
+                                expired: acc.expiredDate ?? '-',
+                                amount: 3600000,
+                                cardNumber: acc.accountNumber ?? '-',
+                              ),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        )
+                        .toList(),
                   ],
                 ),
               ),

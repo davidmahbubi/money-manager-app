@@ -68,7 +68,7 @@ class _MainPageState extends State<MainPage> {
             setState(() {
               if (currentMenuIndex == 0) {
                 currentMenuIndex++;
-                Timer(Duration(milliseconds: 30), () {
+                Timer(const Duration(milliseconds: 30), () {
                   setState(() {
                     currentMenuIndex--;
                   });
@@ -93,28 +93,26 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void populateDummyTransactions() {
-    TransactionCategory category = TransactionCategory(
-      icon: FontAwesomeIcons.utensils,
-      name: 'Food & Drinks',
-      category: TransactionCategoryType.expense,
-    );
-    Account account =
-        Account(name: 'Cash', description: 'Test Deskripsi', initialAmount: 0);
+  // void populateDummyTransactions() {
+  //   TransactionCategory category = TransactionCategory(
+  //     icon: FontAwesomeIcons.utensils,
+  //     name: 'Food & Drinks',
+  //     category: TransactionCategoryType.expense,
+  //   );
 
-    List<Transaction> transactionsList = List<StandartTransaction>.generate(
-      10,
-      (int index) => StandartTransaction(
-        dateTime: DateTime.now(),
-        name: 'Dummy Transaction',
-        note: 'Testing Transaction',
-        amount: 200000,
-        transactionCategory: category,
-        transactionType: TransactionType.expense,
-        account: account,
-      ),
-    );
+  //   List<Transaction> transactionsList = List<StandartTransaction>.generate(
+  //     10,
+  //     (int index) => StandartTransaction(
+  //       dateTime: DateTime.now(),
+  //       name: 'Dummy Transaction',
+  //       note: 'Testing Transaction',
+  //       amount: 200000,
+  //       transactionCategory: category,
+  //       transactionType: TransactionType.expense,
+  //       account: account,
+  //     ),
+  //   );
 
-    TransactionList.transactionsList = transactionsList;
-  }
+  //   TransactionList.transactionsList = transactionsList;
+  // }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/account.dart';
@@ -8,15 +7,22 @@ import 'package:money_manager_app/models/transaction_category.dart';
 import 'package:money_manager_app/data/transaction_category_list.dart';
 
 class ExpenseIncomeForm extends StatefulWidget {
-  Function(
-      Account account,
-      TransactionCategory transactionCategory,
-      double amount,
-      String description,
-      String name,
-      DateTime dateTime) onSubmit;
+  final TransactionType transactionType;
 
-  ExpenseIncomeForm({Key? key, required this.onSubmit}) : super(key: key);
+  final Function(
+    Account account,
+    TransactionCategory transactionCategory,
+    double amount,
+    String description,
+    String name,
+    DateTime dateTime,
+  ) onSubmit;
+
+  const ExpenseIncomeForm({
+    Key? key,
+    required this.onSubmit,
+    required this.transactionType,
+  }) : super(key: key);
 
   @override
   State<ExpenseIncomeForm> createState() => _ExpenseIncomeFormState();
@@ -116,12 +122,16 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
             transactionCategory = tCategory as TransactionCategory;
           },
           decoration: const InputDecoration(hintText: 'Category'),
-          items: TransactionCategoryList.transactionCategoriesList
+          items: TransactionCategoryList.getSpecificCategories(
+            widget.transactionType == TransactionType.expense
+                ? TransactionCategoryType.expense
+                : TransactionCategoryType.income,
+          )
               .map(
                 (TransactionCategory transactionCategory) =>
                     DropdownMenuItem<TransactionCategory>(
-                  child: Text(transactionCategory.name),
                   value: transactionCategory,
+                  child: Text(transactionCategory.name),
                 ),
               )
               .toList(),
