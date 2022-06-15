@@ -23,7 +23,7 @@ class Chart extends StatelessWidget {
               ),
             ),
             const MyCard(),
-            const SizedBox(height: 5),
+            SizedBox(height: 5),
             MyPieChart(),
             MyBar()
           ],
