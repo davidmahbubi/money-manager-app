@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:money_manager_app/main.dart';
 import 'package:money_manager_app/pages/auth/signup.dart';
+import 'package:money_manager_app/pages/auth/firebase_services.dart';
 
 class SignIn extends StatefulWidget {
   SignIn({
@@ -108,12 +109,14 @@ class _SignInState extends State<SignIn> {
                     width: size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => MainPage(),
-                          ),
-                        );
+                        await AuthServices.signInEmailPassword(
+                            email.text, password.text);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (BuildContext context) => MainPage(),
+                        //   ),
+                        // );
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),

@@ -1,5 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:money_manager_app/pages/auth/firebase_services.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({
