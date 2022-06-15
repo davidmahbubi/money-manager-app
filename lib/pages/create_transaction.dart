@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager_app/components/expense_income_form.dart';
+import 'package:money_manager_app/components/transfer_form.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager_app/constants/enums.dart';
+import 'package:money_manager_app/models/standart_transaction.dart';
+import 'package:money_manager_app/models/transaction.dart';
+import 'package:money_manager_app/models/transaction_list.dart';
 
 class CreateTransaction extends StatefulWidget {
   const CreateTransaction({Key? key}) : super(key: key);
@@ -11,33 +16,10 @@ class CreateTransaction extends StatefulWidget {
 }
 
 class _CreateTransactionState extends State<CreateTransaction> {
-  final TextEditingController _dateController = TextEditingController();
-  final TextEditingController _timeController = TextEditingController();
+  TransactionType transactionType = TransactionType.expense;
 
-  TransactionType transactionType = TransactionType.income;
-
-  Future<void> _selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2015),
-      lastDate: DateTime(2050),
-    );
-    setState(() {
-      _dateController.text =
-          pickedDate == null ? '' : DateFormat('dd-MM-yyyy').format(pickedDate);
-    });
-  }
-
-  Future<void> _selectTime(BuildContext context) async {
-    TimeOfDay? pickedTime = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
-    setState(() {
-      _timeController.text =
-          pickedTime == null ? '' : pickedTime.format(context);
-    });
+  void changeTransactionType(TransactionType tType) {
+    transactionType = tType;
   }
 
   Widget _renderTopTransactionCategoryButtons(BuildContext context) {
@@ -49,35 +31,59 @@ class _CreateTransactionState extends State<CreateTransaction> {
             child: transactionType == TransactionType.income
                 ? ElevatedButton(
                     onPressed: () {
-                      setTransactionType(TransactionType.income);
+                      changeTransactionType(TransactionType.income);
                     },
                     child: const Text('Income'),
                   )
                 : OutlinedButton(
                     onPressed: () {
-                      setTransactionType(TransactionType.income);
+                      setState(() {
+                        changeTransactionType(TransactionType.income);
+                      });
                     },
                     child: const Text('Income'),
                   ),
           ),
         ),
         Expanded(
-          child: ElevatedButton(
-            onPressed: () {
-              setTransactionType(TransactionType.expense);
-            },
-            child: const Text('Expense'),
-          ),
+          child: transactionType == TransactionType.expense
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      changeTransactionType(TransactionType.expense);
+                    });
+                  },
+                  child: const Text('Expense'),
+                )
+              : OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      changeTransactionType(TransactionType.expense);
+                    });
+                  },
+                  child: const Text('Expense'),
+                ),
         ),
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 10),
-            child: OutlinedButton(
-              onPressed: () {
-                setTransactionType(TransactionType.transfer);
-              },
-              child: const Text('Transfer'),
-            ),
+            child: transactionType == TransactionType.transfer
+                ? ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        changeTransactionType(TransactionType.transfer);
+                      });
+                    },
+                    child: const Text('Transfer'),
+                  )
+                : OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        changeTransactionType(TransactionType.transfer);
+                      });
+                    },
+                    child: const Text('Transfer'),
+                  ),
           ),
         ),
       ],
@@ -104,102 +110,24 @@ class _CreateTransactionState extends State<CreateTransaction> {
               const SizedBox(height: 20),
               _renderTopTransactionCategoryButtons(context),
               const SizedBox(height: 20),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: TextField(
-                        controller: _dateController,
-                        onTap: () {
-                          _selectDate(context);
-                        },
-                        decoration: const InputDecoration(hintText: 'Date'),
-                      ),
+              transactionType == TransactionType.transfer
+                  ? TransferForm()
+                  : ExpenseIncomeForm(
+                      onSubmit: (date, time, account, transactionCategory,
+                          amount, description, name, trType) {
+                        TransactionList.addTransaction(
+                          StandartTransaction(
+                            amount: amount,
+                            dateTime: DateTime.parse('$date $time'),
+                            name: name,
+                            note: description,
+                            transactionType: trType,
+                            account: account,
+                            transactionCategory: transactionCategory,
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: TextField(
-                        controller: _timeController,
-                        onTap: () {
-                          _selectTime(context);
-                        },
-                        decoration: const InputDecoration(hintText: 'Time'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              DropdownButtonFormField(
-                decoration: const InputDecoration(hintText: 'Account'),
-                items: const <DropdownMenuItem<Object>>[
-                  DropdownMenuItem(
-                    value: 'cash',
-                    child: Text('Cash'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'rekening_bca',
-                    child: Text('Rekening BCA'),
-                  ),
-                ],
-                onChanged: (_) {},
-              ),
-              const SizedBox(height: 5),
-              DropdownButtonFormField(
-                decoration: const InputDecoration(hintText: 'Category'),
-                items: const <DropdownMenuItem<Object>>[
-                  DropdownMenuItem(
-                    value: 'transportation',
-                    child: Text('Transportation'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'food_and_drinks',
-                    child: Text('Food and Drinks'),
-                  ),
-                ],
-                onChanged: (_) {},
-              ),
-              const SizedBox(height: 5),
-              const TextField(
-                decoration: InputDecoration(hintText: 'Amount'),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 5),
-              const TextField(
-                maxLines: 4,
-                decoration: InputDecoration(hintText: 'Note'),
-              ),
-              const SizedBox(height: 35),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
-                      child: Text('Save Transaction'),
-                    )),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
-                      child: Text('Back'),
-                    )),
-              ),
             ],
           ),
         ),
