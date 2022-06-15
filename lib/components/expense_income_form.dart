@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/account.dart';
+import 'package:money_manager_app/models/account_list.dart';
 import 'package:money_manager_app/models/transaction_category.dart';
 import 'package:money_manager_app/models/transaction_category_list.dart';
 
@@ -15,7 +16,6 @@ class ExpenseIncomeForm extends StatefulWidget {
     double amount,
     String description,
     String name,
-    TransactionType trType,
   ) onSubmit;
 
   ExpenseIncomeForm({Key? key, required this.onSubmit}) : super(key: key);
@@ -53,7 +53,7 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
     );
     setState(() {
       _dateController.text =
-          pickedDate == null ? '' : DateFormat('dd-MM-yyyy').format(pickedDate);
+          pickedDate == null ? '' : DateFormat('yyyy-MM-dd').format(pickedDate);
     });
   }
 
@@ -92,17 +92,15 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
         const SizedBox(height: 5),
         DropdownButtonFormField(
           decoration: const InputDecoration(hintText: 'Account'),
-          items: const <DropdownMenuItem<Object>>[
-            DropdownMenuItem(
-              value: 'cash',
-              child: Text('Cash'),
-            ),
-            DropdownMenuItem(
-              value: 'rekening_bca',
-              child: Text('Rekening BCA'),
-            ),
-          ],
-          onChanged: (_) {},
+          items: AccountList.accountsList.map((Account account) {
+            return DropdownMenuItem<Account>(
+              value: account,
+              child: Text(account.name),
+            );
+          }).toList(),
+          onChanged: (account) {
+            selectedAccount = account as Account;
+          },
         ),
         const SizedBox(height: 5),
         DropdownButtonFormField(
@@ -142,7 +140,16 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
           width: double.infinity,
           child: ElevatedButton(
               onPressed: () {
-                // onSubmit();
+                widget.onSubmit(
+                  _dateController.text,
+                  _timeController.text,
+                  selectedAccount!,
+                  transactionCategory!,
+                  double.tryParse(_amountController.text) ?? 0,
+                  _noteController.text,
+                  _nameController.text,
+                );
+                Navigator.pop(context);
               },
               child: const Padding(
                 padding: EdgeInsets.symmetric(

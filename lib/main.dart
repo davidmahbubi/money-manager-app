@@ -55,7 +55,11 @@ class _MainPageState extends State<MainPage> {
             MaterialPageRoute(
               builder: (BuildContext context) => const CreateTransaction(),
             ),
-          );
+          ).then((_) {
+            setState(() {
+              currentMenuIndex = currentMenuIndex;
+            });
+          });
         },
         backgroundColor: Theme.of(context).primaryColor,
         child: const Icon(Icons.add, color: Colors.white),
