@@ -39,7 +39,7 @@ class Account extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             boxShadow: [
-                              BoxShadow(
+                              const BoxShadow(
                                 color: Color.fromRGBO(183, 226, 196, 1),
                                 spreadRadius: 2,
                                 offset: Offset(0.0, 4.0),

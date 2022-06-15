@@ -16,7 +16,7 @@ class MyBar extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 111, 233, 255),
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -32,7 +32,7 @@ class MyBar extends StatelessWidget {
                       width: 30.0,
                       height: 30.0,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.favorite,
                           color: Color.fromARGB(255, 32, 32, 32),

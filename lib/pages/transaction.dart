@@ -12,6 +12,8 @@ class Transaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(TransactionList.transactionsList);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
