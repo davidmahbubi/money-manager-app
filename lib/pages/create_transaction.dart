@@ -114,14 +114,14 @@ class _CreateTransactionState extends State<CreateTransaction> {
                   ? TransferForm()
                   : ExpenseIncomeForm(
                       onSubmit: (date, time, account, transactionCategory,
-                          amount, description, name, trType) {
+                          amount, description, name) {
                         TransactionList.addTransaction(
                           StandartTransaction(
                             amount: amount,
-                            dateTime: DateTime.parse('$date $time'),
+                            dateTime: DateTime.now(),
                             name: name,
                             note: description,
-                            transactionType: trType,
+                            transactionType: transactionType,
                             account: account,
                             transactionCategory: transactionCategory,
                           ),
