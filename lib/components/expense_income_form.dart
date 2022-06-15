@@ -9,14 +9,12 @@ import 'package:money_manager_app/models/transaction_category_list.dart';
 
 class ExpenseIncomeForm extends StatefulWidget {
   Function(
-    String date,
-    String time,
-    Account account,
-    TransactionCategory transactionCategory,
-    double amount,
-    String description,
-    String name,
-  ) onSubmit;
+      Account account,
+      TransactionCategory transactionCategory,
+      double amount,
+      String description,
+      String name,
+      DateTime dateTime) onSubmit;
 
   ExpenseIncomeForm({Key? key, required this.onSubmit}) : super(key: key);
 
@@ -27,11 +25,12 @@ class ExpenseIncomeForm extends StatefulWidget {
 class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
-  Account? selectedAccount;
-  TransactionCategory? transactionCategory;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
+  DateTime? dt;
+  Account? selectedAccount;
+  TransactionCategory? transactionCategory;
 
   Future<void> _selectTime(BuildContext context) async {
     TimeOfDay? pickedTime = await showTimePicker(
@@ -41,6 +40,7 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
     setState(() {
       _timeController.text =
           pickedTime == null ? '' : pickedTime.format(context);
+      fillDt();
     });
   }
 
@@ -54,7 +54,15 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
     setState(() {
       _dateController.text =
           pickedDate == null ? '' : DateFormat('yyyy-MM-dd').format(pickedDate);
+      fillDt();
     });
+  }
+
+  void fillDt() {
+    if (_dateController.text.isNotEmpty && _timeController.text.isNotEmpty) {
+      dt = DateFormat('yyyy-MM-d hh:mm a')
+          .parse('${_dateController.text} ${_timeController.text}');
+    }
   }
 
   @override
@@ -141,13 +149,12 @@ class _ExpenseIncomeFormState extends State<ExpenseIncomeForm> {
           child: ElevatedButton(
               onPressed: () {
                 widget.onSubmit(
-                  _dateController.text,
-                  _timeController.text,
                   selectedAccount!,
                   transactionCategory!,
                   double.tryParse(_amountController.text) ?? 0,
                   _noteController.text,
                   _nameController.text,
+                  dt!,
                 );
                 Navigator.pop(context);
               },

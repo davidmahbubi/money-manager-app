@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/expense_income_form.dart';
 import 'package:money_manager_app/components/transfer_form.dart';
 import 'package:money_manager_app/constants/theme.dart';
-import 'package:intl/intl.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
-import 'package:money_manager_app/models/transaction.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
 
 class CreateTransaction extends StatefulWidget {
@@ -113,12 +111,12 @@ class _CreateTransactionState extends State<CreateTransaction> {
               transactionType == TransactionType.transfer
                   ? TransferForm()
                   : ExpenseIncomeForm(
-                      onSubmit: (date, time, account, transactionCategory,
-                          amount, description, name) {
+                      onSubmit: (account, transactionCategory, amount,
+                          description, name, dateTime) {
                         TransactionList.addTransaction(
                           StandartTransaction(
                             amount: amount,
-                            dateTime: DateTime.now(),
+                            dateTime: dateTime,
                             name: name,
                             note: description,
                             transactionType: transactionType,

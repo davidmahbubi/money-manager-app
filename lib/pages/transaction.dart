@@ -59,7 +59,7 @@ class Transaction extends StatelessWidget {
   Widget _renderTransactionsList(BuildContext context) {
     if (TransactionList.transactionsList.isNotEmpty) {
       // Get all transactions group by date
-      Map<DateTime, Map<String, dynamic>> groupedTransactions =
+      Map<String, Map<String, dynamic>> groupedTransactions =
           TransactionList.groupByDate();
 
       return Column(
@@ -92,11 +92,11 @@ class Transaction extends StatelessWidget {
   }
 
   Widget _renderHomeTransactionItem(
-    MapEntry<DateTime, Map<String, dynamic>> transactions,
+    MapEntry<String, Map<String, dynamic>> transactions,
   ) =>
       Column(children: [
         HomeTransaction(
-          dateTime: transactions.key,
+          dateTime: transactions.value['dateTime'],
           accumulation: transactions.value['accumulation'] as double,
           transactionsList: transactions.value['transactions'],
         ),

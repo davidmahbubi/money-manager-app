@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:money_manager_app/models/transaction.dart';
 
 enum TransactionOrderType { ascending, descending }
@@ -5,20 +6,27 @@ enum TransactionOrderType { ascending, descending }
 class TransactionList {
   static List<Transaction> transactionsList = [];
 
-  static Map<DateTime, Map<String, dynamic>> groupByDate() {
-    Map<DateTime, Map<String, dynamic>> groupedTransactions = {};
+  static Map<String, Map<String, dynamic>> groupByDate() {
+    Map<String, Map<String, dynamic>> groupedTransactions = {};
 
-    for (Transaction transaction in transactionsList) {
-      if (groupedTransactions[transaction.dateTime] == null) {
-        groupedTransactions[transaction.dateTime] = {
+    for (Transaction transaction in getTransactions()) {
+      if (groupedTransactions[
+              DateFormat.yMd().format(transaction.dateTime).toString()] ==
+          null) {
+        groupedTransactions[
+            DateFormat.yMd().format(transaction.dateTime).toString()] = {
+          'dateTime': transaction.dateTime,
           "transactions": [transaction],
           "accumulation": transaction.amount
         };
       } else {
-        groupedTransactions[transaction.dateTime]!['transactions']!
+        groupedTransactions[DateFormat.yMd()
+                .format(transaction.dateTime)
+                .toString()]!['transactions']!
             .add(transaction);
-        groupedTransactions[transaction.dateTime]!['accumulation'] +=
-            transaction.amount;
+        groupedTransactions[DateFormat.yMd()
+            .format(transaction.dateTime)
+            .toString()]!['accumulation'] += transaction.amount;
       }
     }
 

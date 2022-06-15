@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/components/bottom_navbar.dart';
@@ -36,6 +38,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentMenuIndex = 0;
+  int a = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,14 @@ class _MainPageState extends State<MainPage> {
             ),
           ).then((_) {
             setState(() {
-              currentMenuIndex = currentMenuIndex;
+              if (currentMenuIndex == 0) {
+                currentMenuIndex++;
+                Timer(Duration(milliseconds: 30), () {
+                  setState(() {
+                    currentMenuIndex--;
+                  });
+                });
+              }
             });
           });
         },
