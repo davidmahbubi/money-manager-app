@@ -46,15 +46,26 @@ class _CreateTransactionState extends State<CreateTransaction> {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(right: 10),
-            child: OutlinedButton(
-              onPressed: () {},
-              child: const Text('Income'),
-            ),
+            child: transactionType == TransactionType.income
+                ? ElevatedButton(
+                    onPressed: () {
+                      setTransactionType(TransactionType.income);
+                    },
+                    child: const Text('Income'),
+                  )
+                : OutlinedButton(
+                    onPressed: () {
+                      setTransactionType(TransactionType.income);
+                    },
+                    child: const Text('Income'),
+                  ),
           ),
         ),
         Expanded(
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              setTransactionType(TransactionType.expense);
+            },
             child: const Text('Expense'),
           ),
         ),
@@ -62,13 +73,21 @@ class _CreateTransactionState extends State<CreateTransaction> {
           child: Container(
             margin: const EdgeInsets.only(left: 10),
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                setTransactionType(TransactionType.transfer);
+              },
               child: const Text('Transfer'),
             ),
           ),
         ),
       ],
     );
+  }
+
+  void setTransactionType(TransactionType transactionTypeA) {
+    setState(() {
+      transactionType = transactionTypeA;
+    });
   }
 
   @override
