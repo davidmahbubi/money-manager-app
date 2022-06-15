@@ -13,7 +13,6 @@ class AuthServices {
     } on Exception catch (e) {
       print(e.toString());
       return null;
-      // TODO
     }
   }
 
@@ -27,7 +26,6 @@ class AuthServices {
     } on Exception catch (e) {
       print(e.toString());
       return null;
-      // TODO
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:money_manager_app/services/firebase_services.dart';
 
 class User extends StatelessWidget {
   const User({Key? key}) : super(key: key);
@@ -31,7 +32,9 @@ class User extends StatelessWidget {
                 SizedBox(
                   width: 140,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        AuthServices.signOut();
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Row(

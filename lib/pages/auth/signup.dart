@@ -1,6 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:money_manager_app/pages/auth/firebase_services.dart';
+import 'package:money_manager_app/services/firebase_services.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({
@@ -13,12 +13,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final email = TextEditingController();
-
   final password = TextEditingController();
-
   bool _obsecure = true;
-
-  Icon _passIcon = Icon(Icons.lock);
+  Icon _passIcon = const Icon(Icons.lock);
 
   @override
   Widget build(BuildContext context) {
@@ -129,12 +126,16 @@ class _SignUpState extends State<SignUp> {
                   child: ElevatedButton(
                     onPressed: () async {
                       await AuthServices.signUpEmailPassword(
-                          email.text, password.text);
+                        email.text,
+                        password.text,
+                      );
+                      // ignore: use_build_context_synchronously
+                      Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      minimumSize: Size(200, 50),
-                      primary: Color.fromARGB(255, 233, 76, 128),
+                      minimumSize: const Size(200, 50),
+                      primary: const Color.fromARGB(255, 233, 76, 128),
                     ),
                     child: const Text("Sign Up"),
                   ),

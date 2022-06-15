@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:money_manager_app/util/my_log.dart';
+import 'package:money_manager_app/components/my_log.dart';
 
 class MyBar extends StatelessWidget {
   const MyBar({Key? key}) : super(key: key);
