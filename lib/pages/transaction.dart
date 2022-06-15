@@ -4,11 +4,15 @@ import 'package:money_manager_app/components/top_header_profile.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:money_manager_app/models/user.dart';
 
 class Transaction extends StatelessWidget {
-  const Transaction({Key? key}) : super(key: key);
+  const Transaction({
+    Key? key,
+    // required this.user,
+  }) : super(key: key);
+  // final User user;
 
   @override
   Widget build(BuildContext context) {
