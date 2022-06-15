@@ -1,6 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:money_manager_app/services/firebase_services.dart';
+import 'package:money_manager_app/services/auth_services.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

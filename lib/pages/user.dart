@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/constants/theme.dart';
-import 'package:money_manager_app/services/firebase_services.dart';
+import 'package:money_manager_app/data/user_data.dart';
+import 'package:money_manager_app/services/auth_services.dart';
 
 class User extends StatelessWidget {
   const User({Key? key}) : super(key: key);
@@ -22,12 +23,13 @@ class User extends StatelessWidget {
               children: <Widget>[
                 Image.asset('assets/images/default_profile.png', width: 150),
                 const SizedBox(height: 25),
-                const Text(
-                  'Andhika Putra Negara',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                Text(
+                  UserData.activeUser?.displayName ?? '-',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 23),
                 ),
                 const SizedBox(height: 8),
-                const Text('andhikanegara23@gmail.com'),
+                Text(UserData.activeUser?.email ?? '-'),
                 const SizedBox(height: 50),
                 SizedBox(
                   width: 140,

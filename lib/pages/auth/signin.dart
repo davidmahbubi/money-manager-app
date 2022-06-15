@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:money_manager_app/pages/auth/signup.dart';
-import 'package:money_manager_app/services/firebase_services.dart';
+import 'package:money_manager_app/services/auth_services.dart';
+
+import 'package:money_manager_app/data/user_data.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -16,8 +18,14 @@ class _SignInState extends State<SignIn> {
   bool _obsecure = true;
   Icon _passIcon = const Icon(Icons.lock);
 
+  void clearUserData() {
+    UserData.activeUser = null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    clearUserData();
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(

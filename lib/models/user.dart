@@ -10,4 +10,6 @@ class User extends Model {
     required this.email,
     this.picture = 'assets/images/default_profile.png',
   }) : super();
+
+  String get displayName => name.split('@')[0];
 }

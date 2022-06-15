@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/home_transaction.dart';
 import 'package:money_manager_app/components/top_header_profile.dart';
 import 'package:money_manager_app/constants/theme.dart';
+import 'package:money_manager_app/data/user_data.dart';
 import 'package:money_manager_app/models/transaction_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:money_manager_app/models/user.dart';
 
 class Transaction extends StatelessWidget {
-  const Transaction({
-    Key? key,
-    // required this.user,
-  }) : super(key: key);
-  // final User user;
+  const Transaction({Key? key}) : super(key: key);
+
+  // Future<void> getData() async {
+  //   print('getting data');
+  //   DatabaseReference ref = DatabaseServices.database.ref('transactions');
+  //   DatabaseEvent evt = await ref.once();
+  //   print(evt.snapshot.value);
+  //   print('not end');
+  // }
 
   @override
   Widget build(BuildContext context) {
-    print(TransactionList.transactionsList);
+    // getData();
 
     return Scaffold(
       body: SafeArea(
@@ -31,10 +35,7 @@ class Transaction extends StatelessWidget {
               ),
               width: double.infinity,
               child: TopHeaderProfile(
-                user: User(
-                  name: 'Andhika Putra Negara',
-                  email: 'andhikanegara@gmail.com',
-                ),
+                user: UserData.activeUser ?? User(email: '', name: ''),
               ),
             ),
             const SizedBox(height: 25),

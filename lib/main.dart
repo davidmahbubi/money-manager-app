@@ -1,20 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:money_manager_app/components/bottom_navbar.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/data/menu_list.dart';
-import 'package:money_manager_app/models/standart_transaction.dart';
-import 'package:money_manager_app/models/transaction.dart';
-import 'package:money_manager_app/models/transaction_category.dart';
-import 'package:money_manager_app/models/transaction_list.dart';
-import 'package:money_manager_app/models/account.dart';
-import 'package:money_manager_app/services/firebase_services.dart';
+import 'package:money_manager_app/data/user_data.dart';
+import 'package:money_manager_app/models/user.dart' as user_model;
+import 'package:money_manager_app/services/auth_services.dart';
 import 'package:money_manager_app/pages/wrapper.dart';
 import 'package:money_manager_app/pages/create_transaction.dart';
-import 'package:money_manager_app/constants/enums.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) async {
@@ -41,7 +37,9 @@ class MoneyManagerApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  User user;
+
+  MainPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -54,6 +52,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     // populateDummyTransactions();
+    print(widget.user);
+    buildUserData();
 
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -90,6 +90,13 @@ class _MainPageState extends State<MainPage> {
           });
         },
       ),
+    );
+  }
+
+  void buildUserData() {
+    UserData.activeUser = user_model.User(
+      name: widget.user.email ?? '',
+      email: widget.user.email ?? '',
     );
   }
 
