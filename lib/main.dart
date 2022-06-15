@@ -66,7 +66,7 @@ class _MainPageState extends State<MainPage> {
             ),
           ).then((_) {
             setState(() {
-              if (currentMenuIndex == 0) {
+              if (currentMenuIndex == 0 || currentMenuIndex == 1) {
                 currentMenuIndex++;
                 Timer(const Duration(milliseconds: 30), () {
                   setState(() {

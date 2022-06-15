@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager_app/models/transaction_category.dart';
+import 'package:money_manager_app/utils/helper.dart';
 
 class MyLog extends StatelessWidget {
-  const MyLog({Key? key}) : super(key: key);
+  TransactionCategory category;
+  double subtotal = 0;
+
+  MyLog({Key? key, required this.category, required this.subtotal})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,28 +40,28 @@ class MyLog extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 left: 10,
               ),
               child: Text(
-                "Service Motor",
-                style: TextStyle(
+                category.name,
+                style: const TextStyle(
                   color: Color.fromARGB(221, 19, 19, 19),
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   right: 20,
                 ),
                 child: Text(
-                  "Rp.350.000",
+                  formatNumber(subtotal),
                   textAlign: TextAlign.end,
-                  style: TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 15),
                 ),
               ),
             ),

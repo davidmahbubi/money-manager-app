@@ -3,7 +3,7 @@ import 'package:money_manager_app/components/home_transaction.dart';
 import 'package:money_manager_app/components/top_header_profile.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/data/user_data.dart';
-import 'package:money_manager_app/models/transaction_list.dart';
+import 'package:money_manager_app/data/transaction_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:money_manager_app/models/user.dart';
 

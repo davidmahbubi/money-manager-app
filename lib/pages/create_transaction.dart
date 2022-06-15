@@ -4,7 +4,7 @@ import 'package:money_manager_app/components/transfer_form.dart';
 import 'package:money_manager_app/constants/theme.dart';
 import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
-import 'package:money_manager_app/models/transaction_list.dart';
+import 'package:money_manager_app/data/transaction_list.dart';
 import 'package:money_manager_app/models/transfer_transaction.dart';
 
 class CreateTransaction extends StatefulWidget {

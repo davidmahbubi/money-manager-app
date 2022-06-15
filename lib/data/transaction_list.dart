@@ -1,4 +1,6 @@
 import 'package:intl/intl.dart';
+import 'package:money_manager_app/constants/enums.dart';
+import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction.dart';
 
 enum TransactionOrderType { ascending, descending }
@@ -31,6 +33,44 @@ class TransactionList {
     }
 
     return groupedTransactions;
+  }
+
+  static Map<String, Map<String, dynamic>> groupByCategory() {
+    Map<String, Map<String, dynamic>> groupedTransactions = {};
+
+    for (Transaction transaction in getTransactions()) {
+      if (transaction is StandartTransaction) {
+        if (groupedTransactions[transaction.transactionCategory.name]
+                ?.isNotEmpty ??
+            false) {
+          groupedTransactions[transaction.transactionCategory.name]![
+                  'transactions']
+              .add(transaction);
+          groupedTransactions[transaction.transactionCategory.name]![
+              'subtotal'] += transaction.amount;
+        } else {
+          groupedTransactions[transaction.transactionCategory.name] = {
+            'category': transaction.transactionCategory,
+            'transactions': [transaction],
+            'subtotal': transaction.amount,
+          };
+        }
+      }
+    }
+
+    return groupedTransactions;
+  }
+
+  static List<Transaction> getExpenses() {
+    return getTransactions()
+        .where((Transaction tr) => tr.trType == TransactionType.expense)
+        .toList();
+  }
+
+  static List<Transaction> getIncomes() {
+    return getTransactions()
+        .where((Transaction tr) => tr.trType == TransactionType.income)
+        .toList();
   }
 
   static void addTransaction(Transaction transaction) {

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager_app/data/transaction_list.dart';
+import 'package:money_manager_app/utils/helper.dart';
+
+import '../models/transaction.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({Key? key}) : super(key: key);
@@ -23,7 +27,7 @@ class MyCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
@@ -40,7 +44,11 @@ class MyCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
-                        "Rp. 24.000.000",
+                        TransactionList.getIncomes().isEmpty
+                            ? 'Rp. 0'
+                            : formatNumber(TransactionList.getIncomes()
+                                .map((Transaction tr) => tr.amount)
+                                .reduce((value, element) => value + element)),
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -67,7 +75,7 @@ class MyCard extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
@@ -84,7 +92,11 @@ class MyCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
-                        "Rp. 10.000.000",
+                        TransactionList.getExpenses().isEmpty
+                            ? 'Rp.0'
+                            : formatNumber(TransactionList.getExpenses()
+                                .map((Transaction tr) => tr.amount)
+                                .reduce((value, element) => value + element)),
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
