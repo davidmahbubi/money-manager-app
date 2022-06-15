@@ -16,7 +16,7 @@ class MyPieChart extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
           child: PieChart(
             dataMap: dataMap,
             chartType: ChartType.ring,
