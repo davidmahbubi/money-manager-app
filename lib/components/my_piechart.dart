@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-class MyPieChart extends StatelessWidget {
-  final dataMap = <String, double>{
-    "Pengeluaran": 10000000,
-  };
+import 'package:money_manager_app/data/transaction_list.dart';
+import 'package:money_manager_app/models/transaction.dart';
 
-  final colorList = const <Color>[Color.fromARGB(255, 0, 255, 170)];
+class MyPieChart extends StatelessWidget {
+  final colorList = const <Color>[
+    Color.fromARGB(255, 0, 255, 170),
+    Color.fromARGB(255, 219, 219, 219),
+  ];
 
   MyPieChart({Key? key}) : super(key: key);
+
+  double getExpensesTotal() {
+    return TransactionList.getExpenses().isEmpty
+        ? 0.00
+        : TransactionList.getExpenses()
+            .map((Transaction tr) => tr.amount)
+            .reduce((value, element) => value + element);
+  }
+
+  double getIncomeTotal() {
+    return TransactionList.getIncomes().isEmpty
+        ? 0.00
+        : TransactionList.getIncomes()
+            .map((Transaction tr) => tr.amount)
+            .reduce((value, element) => value + element);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +35,14 @@ class MyPieChart extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(32),
           child: PieChart(
-            dataMap: dataMap,
+            dataMap: {
+              "Pengeluaran": getExpensesTotal() /
+                  (getIncomeTotal() + getExpensesTotal()) *
+                  100,
+              "Pemasukan": getIncomeTotal() /
+                  (getIncomeTotal() + getExpensesTotal()) *
+                  100,
+            },
             chartType: ChartType.ring,
             baseChartColor:
                 const Color.fromARGB(255, 63, 63, 63).withOpacity(0.15),
@@ -25,7 +50,7 @@ class MyPieChart extends StatelessWidget {
             chartValuesOptions: const ChartValuesOptions(
               showChartValuesInPercentage: true,
             ),
-            totalValue: 24000000,
+            totalValue: 100,
           ),
         ),
         Container(

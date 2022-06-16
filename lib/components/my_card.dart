@@ -28,7 +28,7 @@ class MyCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
                         "Pemasukan Bulanan",
@@ -38,18 +38,16 @@ class MyCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 1,
-                    ),
+                    const SizedBox(height: 1),
                     Padding(
-                      padding: EdgeInsets.only(left: 5),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Text(
                         TransactionList.getIncomes().isEmpty
                             ? 'Rp. 0'
                             : formatNumber(TransactionList.getIncomes()
                                 .map((Transaction tr) => tr.amount)
                                 .reduce((value, element) => value + element)),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 11,
@@ -76,7 +74,7 @@ class MyCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
                         "Pengeluaran Bulanan",
@@ -86,9 +84,7 @@ class MyCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 1,
-                    ),
+                    const SizedBox(height: 1),
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
@@ -97,7 +93,7 @@ class MyCard extends StatelessWidget {
                             : formatNumber(TransactionList.getExpenses()
                                 .map((Transaction tr) => tr.amount)
                                 .reduce((value, element) => value + element)),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 11,

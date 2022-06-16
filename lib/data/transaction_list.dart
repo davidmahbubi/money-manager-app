@@ -3,6 +3,9 @@ import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/models/standart_transaction.dart';
 import 'package:money_manager_app/models/transaction.dart';
 
+import 'package:money_manager_app/models/account.dart';
+import 'package:money_manager_app/models/transfer_transaction.dart';
+
 enum TransactionOrderType { ascending, descending }
 
 class TransactionList {
@@ -38,7 +41,11 @@ class TransactionList {
   static List<MapEntry<String, Map<String, dynamic>>> groupByCategory() {
     Map<String, Map<String, dynamic>> groupedTransactions = {};
 
-    for (Transaction transaction in getTransactions()) {
+    List<Transaction> transactions = getTransactions()
+        .where((Transaction t) => t.trType == TransactionType.expense)
+        .toList();
+
+    for (Transaction transaction in transactions) {
       if (transaction is StandartTransaction) {
         if (groupedTransactions[transaction.transactionCategory.name]
                 ?.isNotEmpty ??
@@ -67,6 +74,19 @@ class TransactionList {
         0);
 
     return transactionsList;
+  }
+
+  static List<Transaction> getByAccount(Account account) {
+    return transactionsList.where((Transaction tr) {
+      if (tr is StandartTransaction) {
+        return tr.account.id == account.id;
+      } else if (tr is TransferTransaction) {
+        return tr.sourceAccount.id == account.id ||
+            tr.destinationAccount.id == account.id;
+      } else {
+        return false;
+      }
+    }).toList();
   }
 
   static List<Transaction> getExpenses() {

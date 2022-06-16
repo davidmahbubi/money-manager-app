@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:money_manager_app/components/account_card.dart';
+import 'package:money_manager_app/constants/enums.dart';
 import 'package:money_manager_app/data/account_list.dart';
+import 'package:money_manager_app/data/transaction_list.dart';
+import 'package:money_manager_app/models/standart_transaction.dart';
+import 'package:money_manager_app/models/transaction.dart';
+import 'package:money_manager_app/models/account.dart' as account_model;
+import 'package:money_manager_app/models/transfer_transaction.dart';
 
 // ignore: must_be_immutable
 class Account extends StatelessWidget {
@@ -52,7 +58,7 @@ class Account extends StatelessWidget {
                                 shadowColor: colorsPalette[colorIndex],
                                 image: acc.image,
                                 expired: acc.expiredDate ?? '-',
-                                amount: 3600000,
+                                amount: countValues(acc),
                                 cardNumber: acc.accountNumber ?? '-',
                               ),
                               const SizedBox(height: 20),
@@ -68,5 +74,29 @@ class Account extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double countValues(account_model.Account account) {
+    double subtotal = 0;
+
+    List<Transaction> trs = TransactionList.getByAccount(account);
+
+    for (Transaction tr in trs) {
+      if (tr is StandartTransaction) {
+        if (tr.trType == TransactionType.income) {
+          subtotal += tr.amount;
+        } else {
+          subtotal -= tr.amount;
+        }
+      } else if (tr is TransferTransaction) {
+        if (tr.sourceAccount.id == account.id) {
+          subtotal -= (tr.amount + tr.transferFee);
+        } else {
+          subtotal += tr.amount;
+        }
+      }
+    }
+
+    return subtotal;
   }
 }
