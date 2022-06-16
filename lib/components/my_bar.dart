@@ -38,7 +38,7 @@ class MyBar extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 15),
                           const Text(
-                            "Detail Transaction",
+                            "Expenses Structure",
                             style: TextStyle(fontSize: 10),
                           ),
                           const SizedBox(height: 15),
