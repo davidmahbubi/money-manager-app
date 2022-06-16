@@ -99,27 +99,4 @@ class _MainPageState extends State<MainPage> {
       email: widget.user.email ?? '',
     );
   }
-
-  // void populateDummyTransactions() {
-  //   TransactionCategory category = TransactionCategory(
-  //     icon: FontAwesomeIcons.utensils,
-  //     name: 'Food & Drinks',
-  //     category: TransactionCategoryType.expense,
-  //   );
-
-  //   List<Transaction> transactionsList = List<StandartTransaction>.generate(
-  //     10,
-  //     (int index) => StandartTransaction(
-  //       dateTime: DateTime.now(),
-  //       name: 'Dummy Transaction',
-  //       note: 'Testing Transaction',
-  //       amount: 200000,
-  //       transactionCategory: category,
-  //       transactionType: TransactionType.expense,
-  //       account: account,
-  //     ),
-  //   );
-
-  //   TransactionList.transactionsList = transactionsList;
-  // }
 }

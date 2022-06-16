@@ -35,7 +35,7 @@ class TransactionList {
     return groupedTransactions;
   }
 
-  static Map<String, Map<String, dynamic>> groupByCategory() {
+  static List<MapEntry<String, Map<String, dynamic>>> groupByCategory() {
     Map<String, Map<String, dynamic>> groupedTransactions = {};
 
     for (Transaction transaction in getTransactions()) {
@@ -58,7 +58,15 @@ class TransactionList {
       }
     }
 
-    return groupedTransactions;
+    List<MapEntry<String, Map<String, dynamic>>> transactionsList =
+        groupedTransactions.entries.toList();
+    transactionsList.sort((MapEntry<String, Map<String, dynamic>> v1,
+            MapEntry<String, Map<String, dynamic>> v2) =>
+        int.tryParse(
+            (v2.value['subtotal'] - v1.value['subtotal']).toString()) ??
+        0);
+
+    return transactionsList;
   }
 
   static List<Transaction> getExpenses() {

@@ -36,19 +36,20 @@ class MyBar extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 15),
-                          Text(
+                          const SizedBox(height: 15),
+                          const Text(
                             "Detail Transaction",
                             style: TextStyle(fontSize: 10),
                           ),
-                          SizedBox(height: 15),
-                          ...TransactionList.groupByCategory().entries.map(
-                              (MapEntry<String, Map<String, dynamic>> val) {
-                            return MyLog(
-                              category: val.value['category'],
-                              subtotal: val.value['subtotal'],
-                            );
-                          })
+                          const SizedBox(height: 15),
+                          ...TransactionList.groupByCategory().map(
+                            (MapEntry<String, Map<String, dynamic>>
+                                    tCategory) =>
+                                MyLog(
+                              category: tCategory.value['category'],
+                              subtotal: tCategory.value['subtotal'],
+                            ),
+                          )
                         ],
                       ),
                     ),
