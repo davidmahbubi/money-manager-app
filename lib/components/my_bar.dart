@@ -8,8 +8,6 @@ class MyBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(TransactionList.groupByCategory());
-
     return Expanded(
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
